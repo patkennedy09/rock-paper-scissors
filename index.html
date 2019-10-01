@@ -11,8 +11,42 @@
             function computerPlay() {
                 //This function will return 
                 //rock, paper, or scissors, at random
-                return Math.floor((Math.random() * 3) + 1);
+                let num = Math.floor((Math.random() * 3) + 1);
+                switch(num) {
+                    case 1:
+                        return "rock";
+                    case 2:
+                        return "paper";
+                    case 3:
+                        return "scissors";
+                    default:
+                        return "error";//this should never happen
+                }
             }
+            
+            function playerPlay() {
+                let raw = prompt("Type rock, paper, or scissors:", "");
+                return raw.toLowerCase();    
+            }
+
+            function playRound(player, computer) {
+                if (player == "rock") {
+                    if (computer == "rock") {
+                        return "It's a tie"
+                    } else if (computer == "paper") {
+                        return "You Lose! Paper beats Rock"
+                    } else if (computer == "scissors") {
+                        return "You Win! Rock beats Scissors"
+                    } else {
+                        return "Something went terribly wrong"
+                    }
+                } else if (player == "paper") {
+                    //I left off here.
+                    //
+                    //
+                }
+            }
+
             
             function testrng(j) {
                 let one = 0;
