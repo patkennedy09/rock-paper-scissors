@@ -8,6 +8,8 @@
         <h1>Rock Paper Scissors</h1>
         <script>
             // JaveScript goes here!
+            
+            //Next Goal: make this more consise!
 
 
             function computerPlay() {
@@ -86,6 +88,7 @@
             }
 
             function oneRound() {
+                //future plan is to retry round if "bad input"
                 let computer = computerPlay();
                 let player = playerPlay();
                 if (player == "canceled") {
@@ -93,8 +96,9 @@
                 }
                 let result = determineWinner(player,computer);
                 if (result == "win" || result == "tie" || result == "loss") {
-                    return result; //this should retry the round if the user messes up
+                    return result;
                 } else if (result == "bad input") {
+                    //this should be a temporary thing
                     console.log("You're getting a loss for inability to follow directions");
                     return "loss";
                 } else {
