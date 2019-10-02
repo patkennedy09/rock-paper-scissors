@@ -8,6 +8,8 @@
         <h1>Rock Paper Scissors</h1>
         <script>
             // JaveScript goes here!
+
+
             function computerPlay() {
                 //This function will return 
                 //rock, paper, or scissors, at random
@@ -26,24 +28,110 @@
             
             function playerPlay() {
                 let raw = prompt("Type rock, paper, or scissors:", "");
-                return raw.toLowerCase();    
+                if (raw == null) {
+                    return "canceled"
+                } else {
+                    return raw.toLowerCase(); 
+                }
+                   
             }
 
-            function playRound(player, computer) {
+            function determineWinner(player, computer) {
                 if (player == "rock") {
                     if (computer == "rock") {
-                        return "It's a tie"
+                        console.log("It's a tie");
+                        return "tie";
                     } else if (computer == "paper") {
-                        return "You Lose! Paper beats Rock"
+                        console.log("You Lose! Paper beats Rock");
+                        return "loss";
                     } else if (computer == "scissors") {
-                        return "You Win! Rock beats Scissors"
+                        console.log("You Win! Rock beats Scissors");
+                        return "win";
                     } else {
-                        return "Something went terribly wrong"
+                        console.log("Something went terribly wrong");
+                        return "error";
                     }
                 } else if (player == "paper") {
-                    //I left off here.
-                    //
-                    //
+                    if (computer == "rock") {
+                        console.log("You Win! Paper beats Rock");
+                        return "win";
+                    } else if (computer == "paper") {
+                        console.log("It's a tie");
+                        return "tie";
+                    } else if (computer == "scissors") {
+                        console.log("You Lose! Scissors beats Paper");
+                        return "loss";
+                    } else {
+                        console.log("Something went terribly wrong");
+                        return "error";
+                    }
+                } else if (player == "scissors") {
+                    if (computer == "rock") {
+                        console.log("You Lose! Rock beats Scissors");
+                        return "loss";
+                    } else if (computer == "paper") {
+                        console.log("You Win! Scissors beats Paper");
+                        return "win";
+                    } else if (computer == "scissors") {
+                        console.log("It's a tie");
+                        return "tie";
+                    } else {
+                        console.log("Something went terribly wrong");
+                        return "error";
+                    }
+                } else {
+                    console.log("You didn't provide a valid input, you dingus!");
+                    return "bad input";
+                }
+            }
+
+            function oneRound() {
+                let computer = computerPlay();
+                let player = playerPlay();
+                if (player == "canceled") {
+                    return player;
+                }
+                let result = determineWinner(player,computer);
+                if (result == "win" || result == "tie" || result == "loss") {
+                    return result; //this should retry the round if the user messes up
+                } else if (result == "bad input") {
+                    console.log("You're getting a loss for inability to follow directions");
+                    return "loss";
+                } else {
+                    console.log("returning an error here.")
+                    return "error";
+                }       
+            }
+
+            function game() {
+                let rounds = 5;
+                let result = "";
+                let wins = 0;
+                let losses = 0;
+                let ties = 0;
+                let errors = 0;
+                for (i=0; i<rounds; i++) {
+                    result = oneRound();
+                    switch(result) {
+                        case "win":
+                            wins += 1;
+                            break;
+                        case "loss":
+                            losses += 1;
+                            break;
+                        case "tie":
+                            ties += 1;
+                            break;
+                        case "canceled":
+                            i = 6;
+                            break;
+                        default:
+                            errors += 1;
+                    }
+                }
+                console.log(`You had ${wins} wins, ${losses} losses, and ${ties} ties.`);
+                if (errors > 0) {
+                    console.log(`You had ${errors} errors`);
                 }
             }
 
