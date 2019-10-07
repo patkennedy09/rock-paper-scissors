@@ -6,10 +6,18 @@
     </head>
     <body>
         <h1>Rock Paper Scissors</h1>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        
         <script>
             // JaveScript goes here!
+            var rock = document.querySelector('#rock');
+            rock.addEventListener('click', () => {
+                comp = computerPlay();
+                alert('rock ' + determineWinner('rock', comp));
+            })
             
-            //Goal: make this more consise!
 
 
             function computerPlay() {
@@ -27,7 +35,7 @@
                         return "error";//this should never happen
                 }
             }
-            
+            /*
             function playerPlay() {
                 let raw = prompt("Type rock, paper, or scissors:", "");
                 if (raw == null) {
@@ -37,7 +45,7 @@
                 }
                    
             }
-
+            */
             function determineWinner(player, computer) {
                 if (player == "rock") {
                     if (computer == "rock") {
@@ -86,7 +94,7 @@
                     return "bad input";
                 }
             }
-
+            /*
             function oneRound() {
                 //User gets 5 attempts to enter a valid input
                 let attempts = 0;
@@ -112,7 +120,7 @@
                 return "loss";
       
             }
-
+            /*
             function game() {
                 let rounds = 5;
                 let result = "";
@@ -145,7 +153,7 @@
                 }
                 
             }
-
+            */
             
             function testrng(j) {
                 let one = 0;
