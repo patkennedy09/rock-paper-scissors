@@ -15,10 +15,20 @@
             var rock = document.querySelector('#rock');
             rock.addEventListener('click', () => {
                 comp = computerPlay();
-                alert('rock ' + determineWinner('rock', comp));
+                alert('You chose rock and you ' + determineWinner('rock', comp));
+            })
+
+            var paper = document.querySelector('#paper');
+            paper.addEventListener('click', () => {
+                comp = computerPlay();
+                alert('You chose paper and you ' + determineWinner('paper', comp));
             })
             
-
+            var scissors = document.querySelector('#scissors');
+            scissors.addEventListener('click', () => {
+                comp = computerPlay();
+                alert('You chose scissors and you ' + determineWinner('scissors', comp));
+            })
 
             function computerPlay() {
                 //This function will return 
