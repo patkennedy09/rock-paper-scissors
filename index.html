@@ -9,26 +9,26 @@
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
-        
+        <p id="scoreboard">You: 0 Comp: 0</p>
         <script>
             // JaveScript goes here!
+            let playerscore = 0;
+            let compscore = 0;
+
             var rock = document.querySelector('#rock');
             rock.addEventListener('click', () => {
-                comp = computerPlay();
-                alert('You chose rock and you ' + determineWinner('rock', comp));
-            })
+                playerPlay('rock');
+            });
 
             var paper = document.querySelector('#paper');
             paper.addEventListener('click', () => {
-                comp = computerPlay();
-                alert('You chose paper and you ' + determineWinner('paper', comp));
-            })
+                playerPlay('paper');
+            });
             
             var scissors = document.querySelector('#scissors');
             scissors.addEventListener('click', () => {
-                comp = computerPlay();
-                alert('You chose scissors and you ' + determineWinner('scissors', comp));
-            })
+                playerPlay('scissors');
+            });
 
             function computerPlay() {
                 //This function will return 
@@ -45,17 +45,20 @@
                         return "error";//this should never happen
                 }
             }
-            /*
-            function playerPlay() {
-                let raw = prompt("Type rock, paper, or scissors:", "");
-                if (raw == null) {
-                    return "canceled"
-                } else {
-                    return raw.toLowerCase(); 
+            
+            function playerPlay(choice) {
+                comp = computerPlay();
+                result = determineWinner(choice, comp);
+                alert(`You chose ${choice} and you ${result}`);
+                if (result == "win") {
+                    playerscore++;
+                } else if (result == "lose") {
+                    compscore++;
                 }
-                   
+                var score = document.getElementById('scoreboard');
+                score.innerHTML = `You: ${playerscore} Comp: ${compscore}`;      
             }
-            */
+            
             function determineWinner(player, computer) {
                 if (player == "rock") {
                     if (computer == "rock") {
@@ -63,7 +66,7 @@
                         return "tie";
                     } else if (computer == "paper") {
                         console.log("You Lose! Paper beats Rock");
-                        return "loss";
+                        return "lose";
                     } else if (computer == "scissors") {
                         console.log("You Win! Rock beats Scissors");
                         return "win";
@@ -80,7 +83,7 @@
                         return "tie";
                     } else if (computer == "scissors") {
                         console.log("You Lose! Scissors beats Paper");
-                        return "loss";
+                        return "lose";
                     } else {
                         console.log("Something went terribly wrong");
                         return "error";
@@ -88,7 +91,7 @@
                 } else if (player == "scissors") {
                     if (computer == "rock") {
                         console.log("You Lose! Rock beats Scissors");
-                        return "loss";
+                        return "lose";
                     } else if (computer == "paper") {
                         console.log("You Win! Scissors beats Paper");
                         return "win";
